@@ -24,5 +24,12 @@
   Enter a title and Yelp business ID, and click Save.
   
 == Changelog ==
- = Version 1.0.0 (10/24/2018) =
+
+ = Version 1.1.0 (12/18/2018) =
+ * Added setting for disabling plugin stylesheet
+ * Added setting descriptions and used better Settings API practices
+ * Added activate and uninstall hooks to delete settings from database on uninstall of plugin
+ * Code cleanup
+
+ = Version 1.0.0 (12/18/2018) =
  * Initial release

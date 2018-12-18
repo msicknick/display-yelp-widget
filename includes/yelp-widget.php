@@ -7,7 +7,7 @@ class Yelp_Widget extends WP_Widget {
 
     public function __construct() {
 
-        $this->settings = get_option('yelp_plugin_settings', array());
+        $this->settings = get_option('yelp_widget_settings', array());
 
         parent::__construct(
                 'yelp_widget', 'Yelp Widget', array(
@@ -16,9 +16,7 @@ class Yelp_Widget extends WP_Widget {
         );
 
         // Load style sheet and JavaScript.
-        add_action('wp_enqueue_scripts', array($this, 'enqueue_styles'));
-
-        add_action('admin_init', array($this, 'widget_settings'));
+        add_action('wp_enqueue_scripts', array($this, 'enqueue_styles')); 
     }
 
     /**
@@ -48,18 +46,12 @@ class Yelp_Widget extends WP_Widget {
      *
      * @since 1.0.0
      */
-    public function enqueue_styles() {
-        wp_enqueue_style(YELP_WIDGET_SLUG . '-styles', YELP_WIDGET_CSS_URL . 'style.css', array(), YELP_WIDGET_VERSION);
-    }
-
-
-    /**
-     * Register the widget settings
-     *
-     * @since 1.0.0
-     */
-    function widget_settings($file) {
-        register_setting('yelp_widget_settings', 'yelp_widget_settings');
+    public function enqueue_styles() {   
+        if ($this->settings['no_style'] == "N") {
+            wp_enqueue_style(YELP_WIDGET_SLUG . '-styles', YELP_WIDGET_CSS_URL . 'style.css', array(), YELP_WIDGET_VERSION);
+        } else {
+            wp_enqueue_style(YELP_WIDGET_SLUG . '-styles', YELP_WIDGET_CSS_URL . 'no-style.css', array(), YELP_WIDGET_VERSION);
+        }
     }
 
     /**

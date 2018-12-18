@@ -1,18 +1,12 @@
-.yelp-widget {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+.yelp-widget {    
     overflow: hidden;
-    width: auto;
-    background-color: #fff;
+    width: auto;    
     border-radius: 4px;
-    -webkit-box-shadow: 0 3px 10px rgba(44, 62, 80, .12);
-    box-shadow: 0 3px 10px rgba(44, 62, 80, .12);
     margin-bottom: 15px;
     padding: 15px;
-    color: #333;
 }
 
 .yelp-widget a {
-    color: #333;
     -webkit-box-shadow: none;
     box-shadow: none;
 }
@@ -68,11 +62,10 @@
 .yelp-widget .yelp-info-wrap a.yelp-business-name {
     display: block;
     float: none;
-    font-size: 15px;
-    line-height: 18px;
+    font-size: 1em;
+    line-height: 1.8;
     font-weight: 600;
     margin: 0 0 6px;
-    color: #D32323;
     text-decoration: none;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -102,8 +95,7 @@
 }
 
 .yelp-widget .yelp-info-wrap .review-count {
-    color: #666;
-    font-size: 12px;
+    font-size: 0.9em;
     line-height: 1;
     margin-left:5px;
 }
@@ -124,7 +116,6 @@
     margin-bottom: 0;
 }
 
-
 .yelp-review-avatar {
     float: left;
 }
@@ -139,7 +130,7 @@
 .yelp-review-reviewer-name {
     display: block;
     margin: 0;
-    font-size: 11px;
+    font-size: 0.8em;
 }
 
 .yelp-review-avatar,
@@ -149,7 +140,7 @@
 
 
 .yelp-review-excerpt {
-    font-size: 12px;
+    font-size: 0.9em;
     margin: 0 0 0 75px;
     padding: 0;
     position: relative;
@@ -164,22 +155,15 @@
 }
 
 .yelp-review-heading time {
-    font-size: 11px;
+    font-size: 0.8em;
     display: inline-block;
     margin-left: 6px;
     vertical-align:middle;
 }
 
-a.yelp-review-read-more {
-    color: #D32323;
-    text-decoration: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-}
-
 .yelp-review-excerpt-text>p {
     margin: 0;
     padding: 0;
-    font-size: 12px;
+    font-size: 0.9em;
     line-height: 18px;
 }
