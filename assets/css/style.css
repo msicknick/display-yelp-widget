@@ -1,0 +1,185 @@
+.yelp-widget {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    width: auto;
+    background-color: #fff;
+    border-radius: 4px;
+    -webkit-box-shadow: 0 3px 10px rgba(44, 62, 80, .12);
+    box-shadow: 0 3px 10px rgba(44, 62, 80, .12);
+    margin-bottom: 15px;
+    padding: 15px;
+    color: #333;
+}
+
+.yelp-widget a {
+    color: #333;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.yelp-widget a:hover {
+    text-decoration: underline;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.yelp-business {
+    display:table;
+    border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+}
+.yelp-business .yelp-info-wrap {
+    display:table-cell;
+    vertical-align:top;
+    padding-left:15px;
+}
+
+.yelp-business .yelp-business-logo {
+    width:100px;
+    display:table-cell;
+    vertical-align: middle;
+}
+
+
+.yelp-logo {    
+    margin-top: 20px;
+    border-top: 1px solid #e6e6e6;
+    padding-top: 10px;
+}
+
+.yelp-logo img {
+    height: 40px;
+}
+
+
+.yelp-widget img.yelp-business-img {
+    display: block;
+    float: left;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2)
+}
+
+.yelp-widget .yelp-info-wrap {
+    overflow: hidden;
+}
+
+.yelp-widget .yelp-info-wrap a.yelp-business-name {
+    display: block;
+    float: none;
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 600;
+    margin: 0 0 6px;
+    color: #D32323;
+    text-decoration: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.yelp-widget .yelp-info-wrap a.yelp-business-name:hover {
+    text-decoration: underline;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.yelp-widget .yelp-info-wrap .yelp-branding {
+    clear: both;
+    padding: 6px 0;
+    margin: 0;
+}
+
+.yelp-widget .yelp-info-wrap .yelp-branding,
+.yelp-widget .yelp-info-wrap .yelp-branding img {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    display: block;
+}
+
+.yelp-widget .yelp-info-wrap .yelp-rating img {
+    vertical-align: middle;
+}
+
+.yelp-widget .yelp-info-wrap .review-count {
+    color: #666;
+    font-size: 12px;
+    line-height: 1;
+    margin-left:5px;
+}
+
+.yelp-business-reviews {
+    margin: 0;
+    clear: both;
+    display: block;
+    padding: 15px 0 0;
+}
+
+.yelp-review {
+    margin: 0 0 20px;
+    clear: left;
+}
+
+.yelp-review:last-of-type {
+    margin-bottom: 0;
+}
+
+
+.yelp-review-avatar {
+    float: left;
+}
+
+.yelp-review-avatar img {
+    display: block;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, .2);
+}
+
+.yelp-review-reviewer-name {
+    display: block;
+    margin: 0;
+    font-size: 11px;
+}
+
+.yelp-review-avatar,
+.yelp-review-avatar>img {
+    width: 60px;
+}
+
+
+.yelp-review-excerpt {
+    font-size: 12px;
+    margin: 0 0 0 75px;
+    padding: 0;
+    position: relative;
+}
+
+.yelp-review-heading {
+    padding-bottom: 5px;
+}
+
+.yelp-review-heading img {
+    vertical-align:middle;
+}
+
+.yelp-review-heading time {
+    font-size: 11px;
+    display: inline-block;
+    margin-left: 6px;
+    vertical-align:middle;
+}
+
+a.yelp-review-read-more {
+    color: #D32323;
+    text-decoration: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.yelp-review-excerpt-text>p {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+    line-height: 18px;
+}

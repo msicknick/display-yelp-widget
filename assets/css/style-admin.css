@@ -1,0 +1,70 @@
+.wrapper {
+    display: table;
+    width: 100%;
+    font-size:14px;
+}
+
+.wrapper .content {
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ececec;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.04);
+    min-width: 255px;
+    line-height: 1;
+    margin-bottom: 20px;
+    padding: 0;
+    
+}
+
+.wrapper .content h3 {
+    margin: 0;
+    padding: 10px 15px;
+    border-bottom: 1px solid #ececec;
+}
+
+.wrapper .content-inner {
+    margin: 6px 0 0;
+    font-size: 13px;
+    line-height: 1.4em;
+    padding: 0 12px 12px;
+}
+
+.wrapper #sidebar {
+    padding: 0 0 0 20px;
+    width: 400px;
+}
+
+.wrapper .wrapper-cell {
+    display: table-cell;
+    vertical-align: top;
+}
+
+.wrapper #content h2 {
+    margin: 20px 0 0 0;    
+    padding: 20px 15px 10px 15px;
+    border-top: 1px solid #ececec;
+}
+
+
+.table tr th {
+    font-weight:600;
+    text-align:left;
+    padding-right:5px;
+}
+
+.wrapper #content h2:first-of-type, 
+.wrapper #content h3:first-of-type {
+    margin-top:0 !important;
+    border-top:none !important;
+    padding-top:10px !important;
+}
+
+.wrapper ul {
+    display: block;
+    list-style-type: disc;
+    -webkit-padding-start: 20px;
+}
+
+.wrapper ol {
+    display: block;
+    -webkit-padding-start: 20px;
+}
