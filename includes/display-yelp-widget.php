@@ -1,17 +1,17 @@
 <?php
 
-class Yelp_Widget extends WP_Widget {
+class Display_Yelp_Widget extends WP_Widget {
 
     private $settings;
     protected static $instance = null;
 
     public function __construct() {
 
-        $this->settings = get_option('yelp_widget_settings', array());
+        $this->settings = get_option('display_yelp_widget_settings', array());
 
         parent::__construct(
-                'yelp_widget', 'Yelp Widget', array(
-            'description' => __('Display your business\'s Yelp rating and reviews on your Wordpress site.', YELP_WIDGET_SLUG)
+                'display_yelp_widget', 'Yelp Widget', array(
+            'description' => __('Display your business\'s Yelp rating and reviews on your Wordpress site.', DISPLAY_YELP_WIDGET_SLUG)
                 )
         );
 
@@ -48,9 +48,9 @@ class Yelp_Widget extends WP_Widget {
      */
     public function enqueue_styles() {   
         if ($this->settings['no_style'] == "N") {
-            wp_enqueue_style(YELP_WIDGET_SLUG . '-styles', YELP_WIDGET_CSS_URL . 'style.css', array(), YELP_WIDGET_VERSION);
+            wp_enqueue_style(DISPLAY_YELP_WIDGET_SLUG . '-styles', DISPLAY_YELP_WIDGET_CSS_URL . 'style.css', array(), DISPLAY_YELP_WIDGET_VERSION);
         } else {
-            wp_enqueue_style(YELP_WIDGET_SLUG . '-styles', YELP_WIDGET_CSS_URL . 'no-style.css', array(), YELP_WIDGET_VERSION);
+            wp_enqueue_style(DISPLAY_YELP_WIDGET_SLUG . '-styles', DISPLAY_YELP_WIDGET_CSS_URL . 'no-style.css', array(), DISPLAY_YELP_WIDGET_VERSION);
         }
     }
 
@@ -70,14 +70,14 @@ class Yelp_Widget extends WP_Widget {
         <p>
             <?php
             if (empty($this->settings['api_key'])) {
-                echo "<span style='color:red;font-weight:bold;'>You are missing the API Key.</span> <a href='" . esc_url(get_admin_url(null, 'options-general.php?page=' . YELP_WIDGET_SLUG)) . "'>Click here to set one up!</a>";
+                echo "<span style='color:red;font-weight:bold;'>You are missing the API Key.</span> <a href='" . esc_url(get_admin_url(null, 'options-general.php?page=' . DISPLAY_YELP_WIDGET_SLUG)) . "'>Click here to set one up!</a>";
             }
             ?>
 
         </p>
 
         <p>
-            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', YELP_WIDGET_SLUG); ?></label>
+            <label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', DISPLAY_YELP_WIDGET_SLUG); ?></label>
             <input class="widefat" 
                    name="<?php echo $this->get_field_name('title'); ?>" 
                    type="text" 
@@ -85,7 +85,7 @@ class Yelp_Widget extends WP_Widget {
         </p>
         
         <p>
-            <label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Business ID:', YELP_WIDGET_SLUG); ?>
+            <label for="<?php echo $this->get_field_id('id'); ?>"><?php _e('Business ID:', DISPLAY_YELP_WIDGET_SLUG); ?>
                 &nbsp;<span style='font-size:12px;'>(http://www.yelp.com/biz/<b>this-is-the-business-id</b>)</span>
             </label>
             
@@ -124,7 +124,7 @@ class Yelp_Widget extends WP_Widget {
         $title              = !empty($instance['title']) ? esc_attr($instance['title']) : '';
         $id                 = !empty($instance['id']) ? esc_attr($instance['id']) : '';
 
-        $response = self::yelp_widget_get_business($api_key, $id);
+        $response = self::display_yelp_widget_get_business($api_key, $id);
 
 
         echo $args['before_widget'];
@@ -139,7 +139,7 @@ class Yelp_Widget extends WP_Widget {
                     <div class="yelp-business-logo">
                         <a href="<?php echo esc_url($response->url); ?>"  target='_blank'>
                         <img class="yelp-business-img" 
-                             src="<?php echo (( !empty( $response->image_url )) ?  esc_attr( $response->image_url ) : YELP_WIDGET_MS_URL . '/assets/images/blank-biz.png');?>
+                             src="<?php echo (( !empty( $response->image_url )) ?  esc_attr( $response->image_url ) : DISPLAY_YELP_WIDGET_MS_URL . '/assets/images/blank-biz.png');?>
 			"/>
                         </a>
                     </div>  
@@ -148,9 +148,9 @@ class Yelp_Widget extends WP_Widget {
                            href="<?php echo esc_attr($response->url); ?>"
                            title="<?php echo esc_attr($response->name); ?> Yelp page"><?php echo $response->name; ?></a>
                         <div class="yelp-rating">
-                           <?php self::yelp_widget_get_stars($response->rating); ?>
+                           <?php self::display_yelp_widget_get_stars($response->rating); ?>
                         <span
-                            class="review-count"><?php echo esc_attr($response->review_count) . '&nbsp;' . __('reviews', YELP_WIDGET_SLUG); ?></span>	
+                            class="review-count"><?php echo esc_attr($response->review_count) . '&nbsp;' . __('reviews', DISPLAY_YELP_WIDGET_SLUG); ?></span>	
                             </div>
                     </div>
                     
@@ -166,7 +166,7 @@ class Yelp_Widget extends WP_Widget {
 
                                 <div class="yelp-review-avatar">
 
-                                    <img src="<?php echo !empty($review->user->image_url) ? $review->user->image_url : YELP_WIDGET_IMAGES_URL . 'user_60_square.png'; ?>"
+                                    <img src="<?php echo !empty($review->user->image_url) ? $review->user->image_url : DISPLAY_YELP_WIDGET_IMAGES_URL . 'user_60_square.png'; ?>"
                                          width="60" 
                                          height="60"
                                          alt="<?php echo $review->user->name; ?>'s Review"/>
@@ -175,7 +175,7 @@ class Yelp_Widget extends WP_Widget {
 
                                 <div class="yelp-review-excerpt">
                                     <div class="yelp-review-heading">
-                                        <?php self::yelp_widget_get_stars($review->rating); ?>
+                                        <?php self::display_yelp_widget_get_stars($review->rating); ?>
                                         <time>
                                             <?php echo date('n/j/Y', strtotime($review->time_created)); ?>
                                         </time>
@@ -187,7 +187,7 @@ class Yelp_Widget extends WP_Widget {
                                     <?php
                                     ?>
                                     <a href="<?php echo esc_url($review->url); ?>"
-                                       class="yelp-review-read-more" target="_blank"><?php echo __('Read More &raquo;', YELP_WIDGET_SLUG); ?></a>
+                                       class="yelp-review-read-more" target="_blank"><?php echo __('Read More &raquo;', DISPLAY_YELP_WIDGET_SLUG); ?></a>
 
                                 </div>
 
@@ -199,7 +199,7 @@ class Yelp_Widget extends WP_Widget {
 
                 <?php } ?> 
                 <div class="yelp-logo" style="text-align:center;">
-                    <a href="<?php echo esc_url($response->url); ?>"  target='_blank'><?php self::yelp_widget_get_logo(); ?></a>
+                    <a href="<?php echo esc_url($response->url); ?>"  target='_blank'><?php self::display_yelp_widget_get_logo(); ?></a>
                 </div>
 
 
@@ -216,7 +216,7 @@ class Yelp_Widget extends WP_Widget {
      *
      * @since 1.0.0
      */
-    function yelp_widget_get_business($api_key, $business_id) {
+    function display_yelp_widget_get_business($api_key, $business_id) {
         $url = 'https://api.yelp.com/v3/businesses/' . $business_id;
 
         $args = array(
@@ -226,7 +226,7 @@ class Yelp_Widget extends WP_Widget {
             ),
         );
 
-        $response = self::yelp_widget_get_data($url, $args);
+        $response = self::display_yelp_widget_get_data($url, $args);
 
         $reviews_response = self::yelp_get_reviews($api_key, $business_id);
 
@@ -252,7 +252,7 @@ class Yelp_Widget extends WP_Widget {
             ),
         );
 
-        $response = self::yelp_widget_get_data($url, $args);
+        $response = self::display_yelp_widget_get_data($url, $args);
 
         return $response;
     }
@@ -262,7 +262,7 @@ class Yelp_Widget extends WP_Widget {
      *
      * @since 1.0.0
      */
-    function yelp_widget_get_data($url, $args = array()) {
+    function display_yelp_widget_get_data($url, $args = array()) {
         
         $response = wp_safe_remote_get($url, $args);
         
@@ -281,7 +281,7 @@ class Yelp_Widget extends WP_Widget {
      *
      * @since 1.0.0
      */
-    function yelp_widget_get_stars($rating = 0) {
+    function display_yelp_widget_get_stars($rating = 0) {
         $ext = '.png';
         $floor_rating = floor($rating);
 
@@ -291,7 +291,7 @@ class Yelp_Widget extends WP_Widget {
             $image_name = $floor_rating;
         }
 
-        $uri_image_name = YELP_WIDGET_IMAGES_URL . 'yelp-stars/small_' . $image_name;
+        $uri_image_name = DISPLAY_YELP_WIDGET_IMAGES_URL . 'yelp-stars/small_' . $image_name;
         $single = $uri_image_name . $ext;
         $double = $uri_image_name . '@2x' . $ext;
         $triple = $uri_image_name . '@3x' . $ext;
@@ -306,10 +306,10 @@ class Yelp_Widget extends WP_Widget {
      *
      * @since 1.0.0
      */
-    function yelp_widget_get_logo() {
+    function display_yelp_widget_get_logo() {
         $image_name     = 'logo_desktop_medium';
 	$ext            = '.png';
-	$uri_image_name = YELP_WIDGET_IMAGES_URL . $image_name;
+	$uri_image_name = DISPLAY_YELP_WIDGET_IMAGES_URL . $image_name;
 	$single         = $uri_image_name . $ext;
 	$double         = $uri_image_name . '@2x' . $ext;
 	$srcset         = "{$single}, {$double} 2x";
@@ -321,8 +321,8 @@ class Yelp_Widget extends WP_Widget {
 }
 
 // Register the widget
-function register_yelp_widget() {
-    register_widget('Yelp_Widget');
+function register_display_yelp_widget() {
+    register_widget('Display_Yelp_Widget');
 }
 
-add_action('widgets_init', 'register_yelp_widget');
+add_action('widgets_init', 'register_display_yelp_widget');

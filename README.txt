@@ -1,10 +1,10 @@
 
-=== Yelp Widget ===
+=== Display Yelp Widget ===
  Contributors: msicknick
  Tags: yelp, reviews, review, rating, ratings
  Donate link: https://paypal.me/MSicknick
  Requires at least: 4.0
- Tested up to: 4.9.9
+ Tested up to: 5.0.1
  Stable: trunk
  Requires PHP: 5.6
  License: GPLv3
@@ -24,6 +24,10 @@
   Enter a title and Yelp business ID, and click Save.
   
 == Changelog ==
+
+ = Version 1.2.0 (12/18/2018) =
+ * Added the latest WordPress 5.0.1 compatibility
+ * Changed plugin text-domain to adhere with WordPress plugin standards
 
  = Version 1.1.0 (12/18/2018) =
  * Added setting for disabling plugin stylesheet

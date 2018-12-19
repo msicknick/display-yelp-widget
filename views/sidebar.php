@@ -1,8 +1,8 @@
 <div id="sidebar" class="wrapper-cell">
     <div class="content">
-        <h3><?php _e('Plugin Info', YELP_WIDGET_SLUG); ?></h3>
+        <h3><?php _e('Plugin Info', DISPLAY_YELP_WIDGET_SLUG); ?></h3>
         <div class="content-inner">
-            <?php $plugin_data = Yelp_Widget_Admin::plugin_info(YELP_WIDGET_SLUG); ?>
+            <?php $plugin_data = Display_Yelp_Widget_Admin::plugin_info(DISPLAY_YELP_WIDGET_SLUG); ?>
             <table class="table">
                 <tr>
                     <td>
@@ -40,14 +40,14 @@
                         GitHub: 
                     </th>
                     <td>
-                        <?php echo '<a href="' . YELP_WIDGET_GITHUB_URL . basename($plugin_data['PluginURI']) . '" target="_blank">' . YELP_WIDGET_SLUG . '</a>'; ?>
+                        <?php echo '<a href="' . DISPLAY_YELP_WIDGET_GITHUB_URL . basename($plugin_data['PluginURI']) . '" target="_blank">' . DISPLAY_YELP_WIDGET_SLUG . '</a>'; ?>
                     </td>
                 </tr>
             </table>        
         </div>
     </div>
     <div id='content' class="content">   
-        <h3><?php _e('Instructions', YELP_WIDGET_SLUG); ?></h3>
+        <h3><?php _e('Instructions', DISPLAY_YELP_WIDGET_SLUG); ?></h3>
         <div class="content-inner">
             <p>To get started, you will need to do the following:</p>
             <ol>
@@ -59,7 +59,7 @@
         </div>
     </div>
     <div class="content">
-        <h3><?php _e('Donations for hard work!', YELP_WIDGET_SLUG); ?></h3>
+        <h3><?php _e('Donations for hard work!', DISPLAY_YELP_WIDGET_SLUG); ?></h3>
         <div class="content-inner">
             <p>Any donations are appreciated!</p>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
