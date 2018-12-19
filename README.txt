@@ -28,6 +28,7 @@
  = Version 1.2.0 (12/18/2018) =
  * Added the latest WordPress 5.0.1 compatibility
  * Changed plugin text-domain to adhere with WordPress plugin standards
+ * Added function to initialize settings on plugin install
 
  = Version 1.1.0 (12/18/2018) =
  * Added setting for disabling plugin stylesheet

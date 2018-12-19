@@ -15,12 +15,12 @@ class Display_Yelp_Widget_Admin {
 
         // Load admin style sheet
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
-        
+
         // Register settings
-        add_action('admin_init', array($this, 'register_settings'));             
-        
+        add_action('admin_init', array($this, 'register_settings'));
+
         // Register activation hook
-        register_activation_hook(DISPLAY_YELP_WIDGET_BASE_FILE, array($this,'activate') );
+        register_activation_hook(DISPLAY_YELP_WIDGET_BASE_FILE, array($this, 'activate'));
     }
 
     /**
@@ -57,8 +57,23 @@ class Display_Yelp_Widget_Admin {
 
         $screen = get_current_screen();
         if ($this->plugin_screen_hook_suffix == $screen->id) {
-            wp_enqueue_style(DISPLAY_YELP_WIDGET_SLUG . '-admin-styles', DISPLAY_YELP_WIDGET_CSS_URL . 'style-admin.css', array(), DISPLAY_YELP_WIDGET_VERSION);            
+            wp_enqueue_style(DISPLAY_YELP_WIDGET_SLUG . '-admin-styles', DISPLAY_YELP_WIDGET_CSS_URL . 'style-admin.css', array(), DISPLAY_YELP_WIDGET_VERSION);
         }
+    }
+
+    /**
+     * Register uninstall hook on activation
+     *
+     * @since 1.1.0
+     */
+    public function activate() {
+        register_uninstall_hook(DISPLAY_YELP_WIDGET_BASE_FILE, array($this, 'uninstall'));
+        /**
+         * Initialize default settings
+         *
+         * @since 1.1.0
+         */
+        $this->init_default_settings();
     }
 
     /**
@@ -69,15 +84,6 @@ class Display_Yelp_Widget_Admin {
     public function uninstall() {
         unregister_setting('display_yelp_widget', 'display_yelp_widget_settings');
         delete_option('display_yelp_widget_settings');
-    }
-
-    /**
-     * Register uninstall hook on activation
-     *
-     * @since 1.1.0
-     */
-    public function activate() {    
-        register_uninstall_hook(DISPLAY_YELP_WIDGET_BASE_FILE, array($this, 'uninstall'));
     }
 
     /**
@@ -121,37 +127,31 @@ class Display_Yelp_Widget_Admin {
      * @since 1.0.0
      */
     public function register_settings() {
-        
-        register_setting( 'display_yelp_widget', 'display_yelp_widget_settings' );
-        
+
+        register_setting('display_yelp_widget', 'display_yelp_widget_settings');
+
         add_settings_section(
-            'display_yelp_widget_general_section',
-            __( 'Settings', DISPLAY_YELP_WIDGET_SLUG ),
-            '',
-            'display_yelp_widget'
+                'display_yelp_widget_general_section'
+                , __('Settings', DISPLAY_YELP_WIDGET_SLUG)
+                , ''
+                , 'display_yelp_widget'
         );
 
         add_settings_field(
-            'api_key'
-                , __('API Key', 'yelp_plugin'),
-            array($this, 'api_key_setting_callback'),
-            'display_yelp_widget',
-            'display_yelp_widget_general_section'
+                'api_key'
+                , __('API Key', DISPLAY_YELP_WIDGET_SLUG)
+                , array($this, 'api_key_setting_callback')
+                , 'display_yelp_widget'
+                , 'display_yelp_widget_general_section'
         );
 
         add_settings_field(
-            'no_style'
-                , __('Disable stylesheet output', 'yelp_plugin'),
-            array($this, 'no_style_setting_callback'),
-            'display_yelp_widget',
-            'display_yelp_widget_general_section'
+                'style'
+                , __('Stylesheet output type', DISPLAY_YELP_WIDGET_SLUG)
+                , array($this, 'style_setting_callback')
+                , 'display_yelp_widget'
+                , 'display_yelp_widget_general_section'
         );
-      
-    }   
-    
-
-    function display_yelp_widget_settings_section_callback() {
-        echo __('This Section Description', DISPLAY_YELP_WIDGET_SLUG);
     }
 
     /**
@@ -159,11 +159,10 @@ class Display_Yelp_Widget_Admin {
      *
      * @since 1.0.0
      */
-
     function api_key_setting_callback() {
         ?>
         <p>
-                <input type='text' style='width:400px;' name='display_yelp_widget_settings[api_key]' value=' <?php echo $this->settings['api_key']; ?>'>
+            <input type='text' style='width:400px;' name='display_yelp_widget_settings[api_key]' value='<?php echo trim($this->settings['api_key']); ?>'>
         </p>
         <p class="description">
             An API key is required for this plugin to work. <a href='https://www.yelp.com/developers/documentation/v3/authentication'>Follow these instructions to aquire one.</a>
@@ -176,20 +175,44 @@ class Display_Yelp_Widget_Admin {
      *
      * @since 1.0.0
      */
-    function no_style_setting_callback() {
+    function style_setting_callback() {
         ?>        
-            <p>
-                <input type="radio" name='display_yelp_widget_settings[no_style]' id="yel-widget-no-style-y" value="Y" <?php checked("Y", $this->settings['no_style'], true); ?>>
-                <label for="yel-widget-no-style-y">Yes</label>
-            </p>
-            <p>
-                <input type="radio" name='display_yelp_widget_settings[no_style]' id="yel-widget-no-style-n" value="N" <?php checked("N", $this->settings['no_style'], true); ?>>
-                <label for="yel-widget-no-style-n">No</label>
-            </p>
-            <p class="description">
-                Disabling the custom stylesheet will allow your site's theme to direct the font, colors, and backgrounds.
-            </p>
+        <p>
+            <input type="radio" name='display_yelp_widget_settings[style]' id="yel-widget-no-style-y" value="yelp" <?php checked("yelp", $this->settings['style'], true); ?>>
+            <label for="yel-widget-no-style-y">Yelp style</label>
+        </p>
+        <p>
+            <input type="radio" name='display_yelp_widget_settings[style]' id="yel-widget-no-style-n" value="custom" <?php checked("custom", $this->settings['style'], true); ?>>
+            <label for="yel-widget-no-style-n">Custom colors</label>
+        </p>
+        <p>
+            <input type="radio" name='display_yelp_widget_settings[style]' id="yel-widget-no-style-n" value="none" <?php checked("none", $this->settings['style'], true); ?>>
+            <label for="yel-widget-no-style-n">No style</label>
+        </p>
+        <p class="description">
+            Yelp style uses Yelp colors; Custom colors disables all color scheme options but keeps formatting; No style allows user to completely customize widget output.
+        </p>
         <?php
+    }
+
+    /**
+     * Sets default settings on Plugin installation if they do not exist already
+     *
+     * @since 1.2.0
+     */
+    public function init_default_settings() {
+
+        $display_yelp_widget_settings = array(
+            'api_key' => '',
+            'style' => 'yelp'
+        );
+
+        if (!get_option('display_yelp_widget_settings')) {
+            add_option('display_yelp_widget_settings', $display_yelp_widget_settings);
+        } else {
+            $display_yelp_widget_settings = wp_parse_args(get_option('display_yelp_widget_settings'), $display_yelp_widget_settings);
+            update_option('display_yelp_widget_settings', $display_yelp_widget_settings);
+        }
     }
 
     /**

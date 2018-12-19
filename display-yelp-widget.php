@@ -4,7 +4,7 @@
  *  Plugin Name:  Display Yelp Widget
  *  Plugin URI:   https://github.com/msicknick/display-yelp-widget/
  *  Description:  Displays your business's Yelp rating and reviews.
- *  Version:      1.1.0
+ *  Version:      1.2.0
  *  Author:       Magda Sicknick
  *  Author URI:   https://www.msicknick.com/
  *  License:      GPLv3
@@ -23,13 +23,13 @@ if (!defined('ABSPATH')) {
 /**
  * DEFINE CONSTANTS
  */
-define('DISPLAY_YELP_WIDGET_VERSION', "1.1.0");
+define('DISPLAY_YELP_WIDGET_VERSION', "1.2.0");
 define('DISPLAY_YELP_WIDGET_SLUG', "display-yelp-widget");
 define('DISPLAY_YELP_WIDGET_BASENAME', plugin_basename(DISPLAY_YELP_WIDGET_SLUG . '.php'));
 
 /**
  * DEFINE PATHS
- */
+ */ 
 define('DISPLAY_YELP_WIDGET_BASE_FILE', __FILE__ );
 define('DISPLAY_YELP_WIDGET_PATH', plugin_dir_path(__FILE__));
 define('DISPLAY_YELP_WIDGET_VIEWS_PATH', DISPLAY_YELP_WIDGET_PATH . 'views/');

@@ -47,10 +47,12 @@ class Display_Yelp_Widget extends WP_Widget {
      * @since 1.0.0
      */
     public function enqueue_styles() {   
-        if ($this->settings['no_style'] == "N") {
+        if ($this->settings['style'] == "yelp") {
             wp_enqueue_style(DISPLAY_YELP_WIDGET_SLUG . '-styles', DISPLAY_YELP_WIDGET_CSS_URL . 'style.css', array(), DISPLAY_YELP_WIDGET_VERSION);
-        } else {
+        } else if ($this->settings['style'] == "custom") {
             wp_enqueue_style(DISPLAY_YELP_WIDGET_SLUG . '-styles', DISPLAY_YELP_WIDGET_CSS_URL . 'no-style.css', array(), DISPLAY_YELP_WIDGET_VERSION);
+        } else {
+            // no stylesheet at all
         }
     }
 
